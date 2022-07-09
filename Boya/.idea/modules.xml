@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/Boya.iml" filepath="$PROJECT_DIR$/.idea/Boya.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DS/DS.iml" filepath="$PROJECT_DIR$/DS/DS.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Human/Human.iml" filepath="$PROJECT_DIR$/Human/Human.iml" />
+      <module fileurl="file://$PROJECT_DIR$/IO/IO.iml" filepath="$PROJECT_DIR$/IO/IO.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LEETCODE/LEETCODE.iml" filepath="$PROJECT_DIR$/LEETCODE/LEETCODE.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LineUp/LineUp.iml" filepath="$PROJECT_DIR$/LineUp/LineUp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Shape/Shape.iml" filepath="$PROJECT_DIR$/Shape/Shape.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Student/Student.iml" filepath="$PROJECT_DIR$/Student/Student.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TryCatchExcepetion/TryCatchExcepetion.iml" filepath="$PROJECT_DIR$/TryCatchExcepetion/TryCatchExcepetion.iml" />
+    </modules>
+  </component>
+</project>
