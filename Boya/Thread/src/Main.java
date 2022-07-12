@@ -1,4 +1,4 @@
-import java.util.Random;
+import java.util.*;
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
 
@@ -42,17 +42,19 @@ import static java.lang.Thread.sleep;
  * 廚師 5
  */
 public class Main {
-    static void pause(int millis) {
-        try {
-            sleep(millis);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     public static void main(String[] args) {
-        var clerk = new Clerk();
-        new Thread(new Producer(clerk)).start();
-        new Thread(new Consumer(clerk)).start();
+//        var clerk = new Clerk();
+//        new Thread(new Producer(clerk)).start();
+//        new Thread(new Consumer(clerk)).start();
+        List<Queue<? extends Food>> foods = new ArrayList<>();
+        Queue<Food> foodQueue = new LinkedList<>();
+
+        Hamburger hamburger = new Hamburger();
+        if(foods.contains(Queue<hamburger>)){
+
+        }
+        if(foods.contains(hamburger)){
+            //foods
+        }
     }
 }
