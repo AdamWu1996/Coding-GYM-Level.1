@@ -1,6 +1,4 @@
 import java.util.*;
-import java.util.concurrent.BrokenBarrierException;
-import java.util.concurrent.CyclicBarrier;
 
 import static java.lang.Thread.sleep;
 
@@ -43,18 +41,7 @@ import static java.lang.Thread.sleep;
  */
 public class Main {
     public static void main(String[] args) {
-//        var clerk = new Clerk();
-//        new Thread(new Producer(clerk)).start();
-//        new Thread(new Consumer(clerk)).start();
-        List<Queue<? extends Food>> foods = new ArrayList<>();
-        Queue<Food> foodQueue = new LinkedList<>();
-
-        Hamburger hamburger = new Hamburger();
-        if(foods.contains(Queue<hamburger>)){
-
-        }
-        if(foods.contains(hamburger)){
-            //foods
-        }
+        Restaurant restaurant = new Restaurant();
+        restaurant.openShop();
     }
 }

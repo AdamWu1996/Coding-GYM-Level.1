@@ -1,16 +1,32 @@
 public class Customer implements Runnable {
-    private Waiter waiter;
+    private Restaurant restaurant;
+    private Food orderFood;
+    private final int id;
 
-    public Customer(Waiter waiter,Food food) {
-        this.waiter = waiter;
+    public Customer(Restaurant restaurant, Food food, int id) {
+        this.restaurant = restaurant;
+        this.orderFood = food;
+        this.id = id;
+        System.out.println(this + " order " + food);
     }
 
     @Override
     public void run() {
-//        try{
-//            while(true){
-//                Food orderFood = this.waiter.getFood();
-//            }
-//        }
+        try {
+            restaurant.setOrder(this);
+            wait();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("Customer" + id + " got " + restaurant.getFinishFood());
+    }
+
+    public Food getOrderFood() {
+        return orderFood;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer" + id;
     }
 }

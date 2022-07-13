@@ -10,4 +10,9 @@ public class Food {
         this.price = price;
         this.costTime = costTime;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
