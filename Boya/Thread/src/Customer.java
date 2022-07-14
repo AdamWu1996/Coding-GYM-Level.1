@@ -13,12 +13,14 @@ public class Customer implements Runnable {
     @Override
     public void run() {
         try {
-            restaurant.setOrder(this);
-            wait();
+            synchronized (this){
+                restaurant.setOrder(this);
+                wait();
+                System.out.println("Customer" + id + " got " + restaurant.getFinishFood());
+            }
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        System.out.println("Customer" + id + " got " + restaurant.getFinishFood());
     }
 
     public Food getOrderFood() {

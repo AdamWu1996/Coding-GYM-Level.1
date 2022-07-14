@@ -9,11 +9,12 @@ public class Restaurant {
     private final List<Thread> threads = new ArrayList<>();
     private final Thread customerMakerThread = new Thread(new CustomerMaker(this));
     private Thread timer = new Thread(new Timer(this));
+    private static int income = 0;
 
     public synchronized void openShop() {
         timer.start();
         for (int i = 0; i < 5; i++) {
-            Thread threadChief = new Thread(new Chief(this));
+            Thread threadChief = new Thread(new Chief(this, i));
             threads.add(threadChief);
             threadChief.start();
         }
@@ -24,13 +25,16 @@ public class Restaurant {
 
     public synchronized void setOrder(Customer customer) {
         orders.offer(customer);
+        notify();
     }
     //廚師拿取訂單
 
-    public synchronized Customer getOrder() {
+    public Customer getOrder() {
         while (orders.peek() == null) {
             try {
-                wait();
+                synchronized (this) {
+                    wait();
+                }
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -41,7 +45,9 @@ public class Restaurant {
 
     public synchronized void finishOrder(Customer customer) {
         finishOrders.offer(customer);
-        notifyAll();
+        synchronized (customer) {
+            customer.notify();
+        }
     }
     //客戶拿取餐點
 
@@ -53,8 +59,10 @@ public class Restaurant {
                 throw new RuntimeException(e);
             }
         }
-        notify();
-        return finishOrders.remove().getOrderFood();
+        Customer customer = finishOrders.remove();
+        customer.notify();
+        getIncome(customer.getOrderFood().price);
+        return customer.getOrderFood();
     }
 
     public synchronized void closeShop() {
@@ -65,5 +73,10 @@ public class Restaurant {
 
     public synchronized void addThread(Thread thread) {
         threads.add(thread);
+    }
+
+    public synchronized void getIncome(int income){
+        this.income += income;
+        System.out.println("Current Income:" + this.income);
     }
 }

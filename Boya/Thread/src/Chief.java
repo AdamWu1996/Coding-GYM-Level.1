@@ -1,8 +1,10 @@
 public class Chief implements Runnable {
     private Restaurant restaurant;
+    private int no;
 
-    public Chief(Restaurant restaurant) {
+    public Chief(Restaurant restaurant, int no) {
         this.restaurant = restaurant;
+        this.no = no;
     }
 
     @Override
@@ -10,7 +12,7 @@ public class Chief implements Runnable {
         try {
             while (true) {
                 Customer customer = restaurant.getOrder();
-                System.out.println("Doing " + customer + "'s " + customer.getOrderFood());
+                System.out.println(this + " Doing " + customer + "'s " + customer.getOrderFood());
                 Thread.sleep(customer.getOrderFood().costTime * 1000L);
                 System.out.println(customer + "'s " + customer.getOrderFood() + " finished");
                 restaurant.finishOrder(customer);
@@ -18,5 +20,10 @@ public class Chief implements Runnable {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Chief" + no;
     }
 }

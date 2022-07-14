@@ -11,7 +11,7 @@ public class CustomerMaker implements Runnable {
     }
 
     @Override
-    public void run() {
+    public synchronized void run() {
         try {
             while (true) {
                 //等待 2 ~ 7 秒
