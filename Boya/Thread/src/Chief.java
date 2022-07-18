@@ -10,7 +10,7 @@ public class Chief implements Runnable {
     @Override
     public void run() {
         try {
-            while (true) {
+            while (restaurant.isOpening()) {
                 Customer customer = restaurant.getOrder();
                 System.out.println(this + " Doing " + customer + "'s " + customer.getOrderFood());
                 Thread.sleep(customer.getOrderFood().costTime * 1000L);

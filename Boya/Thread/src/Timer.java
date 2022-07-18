@@ -10,7 +10,7 @@ public class Timer implements Runnable {
         synchronized (this){
             try {
                 System.out.println("Restaurant Opening");
-                wait(120 * 1000L);
+                wait(60 * 1000L);
                 System.out.println("Restaurant Closed");
                 restaurant.closeShop();
             } catch (InterruptedException e) {

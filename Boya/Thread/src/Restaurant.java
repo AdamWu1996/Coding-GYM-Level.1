@@ -10,8 +10,10 @@ public class Restaurant {
     private final Thread customerMakerThread = new Thread(new CustomerMaker(this));
     private Thread timer = new Thread(new Timer(this));
     private static int income = 0;
+    private boolean isOpening = false;
 
     public synchronized void openShop() {
+        isOpening = true;
         timer.start();
         for (int i = 0; i < 5; i++) {
             Thread threadChief = new Thread(new Chief(this, i));
@@ -66,9 +68,8 @@ public class Restaurant {
     }
 
     public synchronized void closeShop() {
-        for (Thread thread : threads) {
-            thread.interrupt();
-        }
+        isOpening = false;
+        System.out.println("Restaurant closed total income : " + income);
     }
 
     public synchronized void addThread(Thread thread) {
@@ -78,5 +79,9 @@ public class Restaurant {
     public synchronized void getIncome(int income){
         this.income += income;
         System.out.println("Current Income:" + this.income);
+    }
+
+    public boolean isOpening() {
+        return isOpening;
     }
 }

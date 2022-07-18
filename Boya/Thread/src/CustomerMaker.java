@@ -13,7 +13,7 @@ public class CustomerMaker implements Runnable {
     @Override
     public synchronized void run() {
         try {
-            while (true) {
+            while (restaurant.isOpening()) {
                 //等待 2 ~ 7 秒
                 wait(random.nextInt(5) * 1000 + 2000);
                 Thread customerThread = new Thread(new Customer(restaurant, getRandomFood(), getNumber()));
